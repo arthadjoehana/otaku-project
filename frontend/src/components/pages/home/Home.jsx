@@ -1,7 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import UserContext from '../../context/userContext';
-import Register from './Register';
+import UserContext from '../../../context/userContext';
+import Register from '../Register';
+
+import './Home.css'
 
 export default function Home () {
     const {userData} = useContext(UserContext);
@@ -9,16 +11,16 @@ export default function Home () {
 
     useEffect(() => {
         if(!userData.user)
-            history.push("/login");
+            history.push("/");
     }, []);
 
     return (
         <div>
-            {userData.user ? (
-                <h1>Welcome {userData.user.displayName}</h1>
-            ) : (
-                <Register />
-            )}
+            <div className="home">
+                <div className="home-header">
+                Welcome, {userData.user.displayName}
+                </div>    
+            </div>
         </div>
     );
 }

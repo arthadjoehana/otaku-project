@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export default function Searchbar() {
+export default function SearchBar() {
    
     return ( 
         <div className="navsearch">
