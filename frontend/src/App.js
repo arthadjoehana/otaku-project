@@ -6,53 +6,38 @@ import UserContext from './context/userContext';
 import './App.css';
 
 import Home from './components/pages/home/Home';
-import Register from './components/pages/Register';
-import NavBar from './components/navbar/NavBar';
+import Register from './components/pages/register/Register';
+import Navbar from './components/navbar/Navbar';
 
 
 
-function App() {
-  const [ userData, setUserData] = useState({
-    token: undefined,
-    user: undefined
-  });
+export default function App() {
 
-  useEffect(() => {
-    const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");
-      if(token === null){
-        localStorage.setItem("auth-token", "");
-        token = "";
-      }
-      const tokenResponse = await axios.post('http://localhost:5000/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
-      if (tokenResponse.data) {
-        const userRes = await axios.get("http://localhost:5000/users/", {
-          headers: { "x-auth-token": token },
-        });
-        setUserData({
-          token,
-          user: userRes.data,
-        });
-      }
-    }
+  const [isLogIn, setisLogIn] = useState(false)
 
-    checkLoggedIn();
-  }, []);
+  // useEffect(() => {
+  //   console.log("UseEFFECT MARCHE")
+  //   axios.get(process.env.REACT_APP_API_URL + "/home/logIn", { withCredentials: true })
+  //   .then((res) => {
+  //     localStorage.setItem("isLogin", res.data.logStatus);
+  //     setisLogIn("true")
+  //     console.log(res.data.logStatus)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }, []);
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <NavBar />
+      <UserContext.Provider value={{ isLogIn, setisLogIn }}>
+        <Navbar />
         <Switch>
-          {userData.user ? (
-            <Route exact path="/" component={Home} />
-          ) : (
-            <Register />
-          )}
+          <Route exact path="/" component={Register} />
+          <Route exact path="/Home" component={Home} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>
   );
 }
 
-export default App;

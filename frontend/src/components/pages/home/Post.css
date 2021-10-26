@@ -1,0 +1,122 @@
+
+
+.post {
+    margin: 10px;
+    width: 700px;
+    border-bottom: solid 1px grey;
+}
+
+.post-user {
+    display: flex;
+    padding: 30px;
+}
+
+.post-userprofilepic {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+.post-userdetails {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.post-username {
+    font-size: 1rem;
+}
+
+.post-followerscount {
+    font-size: 0.7rem;
+}
+
+.post-time {
+    font-size: 0.7rem;
+}
+
+.post-title {
+    font-size: 1rem;
+    padding: 30px;
+}
+
+.post-image {
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 100%;
+
+}
+
+.post-image img {
+    height: 500px;
+}
+
+.post-details {
+    display: flex;
+    margin: 10px;
+}
+
+.post-comment-toggle button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.post-options {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.post-options button {
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: grey;
+}
+
+.post-comment {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.post-comment-userprofilepic {
+    background-color: white;
+    border: solid 1px rgb(210, 210, 210);
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.post-comment input {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 570px;
+    height: 50px;
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 10px;
+    border: solid 1px rgb(210, 210, 210);
+    outline: none;
+}
+
+.post-comment button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+
+.liked {
+    color: red;
+}

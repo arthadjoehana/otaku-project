@@ -1,108 +1,102 @@
-import React, { useState, useContext } from 'react'
-import { withRouter, NavLink, useHistory } from 'react-router-dom'
-import UserContext from "../../context/userContext"
-import axios from "axios"
-import ErrorNotice from "../misc/ErrorNotice"
+import React, { useState, useEffect, useContext } from 'react'
+import { NavLink, useHistory } from 'react-router-dom'
+import axios from "axios";
+import userContext from '../../context/userContext';
+import Logo from '../../images/logo3.png'
 
-import './NavBar.css'
-import UserSubMenu from './UserSubMenu'
+import './Navbar.css'
 
-export default function NavBar() {
-    
-    const { userData, setUserData } = useContext(UserContext)
-    const history = useHistory()
+export default function Navbar() {
 
-    const register = () => history.push("/register")
-    const login = () => history.push("/login")
-    const logout = () => {
-        setUserData({
-            token: undefined,
-            user: undefined
-        })
-        localStorage.setItem("auth-token","")
-    }
-
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [error, setError] = useState()
+    // const { isLogIn, setIsLogIn } = useContext(UserContext)
+    // const history = useHistory();
 
     const submit = async (e) => {
         e.preventDefault()
-        try{
-            const loginUser = {email, password}
-            const loginResponse = await axios.post("http://localhost:5000/users/login", loginUser)
-            setUserData({
-                token: loginResponse.data.token,
-                user: loginResponse.data.user
-            })
-            localStorage.setItem("auth-token", loginResponse.data.token)
-            history.push("/")
-        } catch(err) {
-            err.response.data.msg && setError(err.response.data.msg)
-        }
-        
+        // const loginUser = {
+        //     email: document.getElementById("email").value,
+        //     password: document.getElementById("password").value,
+        // }
+        // console.log(process.env.REACT_APP_API_URL + "/home/logIn")
+        // await axios.post(process.env.REACT_APP_API_URL + "/home/logIn", loginUser, { withCredentials: true }) //withCredentials => pour indiquer à Axios de passer le Cookie
+        //     .then((res) => {
+        //         if (res.data.message === "You are connected") {
+        //             localStorage.setItem("isLogin", "true");
+        //             history.push("/home");
+        //         }
+        //         else if (res.data.message === "Account waiting for validation") {
+        //             history.push("/waitingforvalidation");
+        //         }
+        //         else {
+        //             alert("Invalid email or password");
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log("coté front   ", err);
+        //     });
+        // console.log(loginUser);
     }
 
-    const [userDropdown, setUserDropdown] = useState(false)
-    const userSubMenu = () => {
-        if (userDropdown) {
-            setUserDropdown(false)
-        } else {
-            setUserDropdown(true)
-        }
-        
-    }
-    
-    const [settingsDropdown, setSettingsDropdown] = useState(false)
-    const settingsSubMenu = () => {
-        if (settingsDropdown) {
-            setSettingsDropdown(false)
-        } else {
-            setSettingsDropdown(true)
-        }
-        
+    // useEffect(() => {
+    //     axios.get(process.env.REACT_APP_API_URL + `/profil`, { withCredentials: true })
+    //         .then((res) => {
+    //             setUser(res.data.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log("coté front   ", err);
+    //         });
+    // }, []);
+
+    const logout = () => {
+        // axios.get(process.env.REACT_APP_API_URL + "/home", { withCredentials: true })
+        //     .then((res) => {
+        //         console.log(res);
+        //     })
+        //     .catch((err) => {
+        //         console.log("coté front   ", err);
+        //     });
     }
 
-    return ( 
-        <withRouter>
+    return (
+
         <nav className="navbar">
-            
-            <div className="auth-options">
-            {userData.user ? (
-                <>
-                <NavLink className="navlogo" to="/"><button><i className="fas fa-circle"></i><span> TAKU</span></button></NavLink>
-                <div className="navlinks">
-                    <NavLink exact to="/" activeClassName="active"><button className="navlink"><i className="fas fa-home"></i></button></NavLink>
-                    <NavLink exact activeClassName="active" to="/games"><button className="navlink"><i className="fas fa-gamepad"></i></button></NavLink>
-                    <NavLink exact activeClassName="active" to="/community"><button className="navlink"><i className="fas fa-users"></i></button></NavLink>
-                    <NavLink exact activeClassName="active" to="/profile"><button className="navlink"><i className="fas fa-user"></i></button></NavLink>
-                    
-                </div>
-                <div className="navlinks2">
-                    <button className="navlink2" onClick={userSubMenu}><i className="fas fa-bell"></i></button>
-                    <button className="navlink2" onClick={settingsSubMenu}><i className="fas fa-cog"></i></button>
-                    <button className="navlink2" onClick={logout}><i className="fas fa-sign-out-alt"></i></button>
-                </div>
-                </>
-            ) : (
-                <>
-                <NavLink className="navlogo" to="/"><button><i className="fas fa-circle"></i><span> TAKU</span></button></NavLink>
-                <div className="login">
-                    {error && <ErrorNotice message={error} clearError={() => setError(undefined)} />}
-                    <form onSubmit={submit}>
-                        <input className="navinput" type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
-                        <input className="navinput" type="password" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
-                        <input type="submit" value="Login" className="navlogin" />
-                        
-                    </form>
-                </div>
-                </>
-            )}
+            <NavLink className="nav-logo" to="/">
+                <button>
+                <img src={Logo} alt="" />
+                </button>
+            </NavLink>
+            <div className="nav-links">
+                <NavLink exact activeClassName="active" to="/home" ><button className="nav-link"><i className="fas fa-home"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/games"><button className="nav-link"><i className="fas fa-gamepad"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/community"><button className="nav-link"><i className="fas fa-users"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/profile"><button className="nav-link"><i className="fas fa-user"></i></button></NavLink>
             </div>
+            <div className="nav-settings">
+                <NavLink exact to="/"><button className="nav-link" onClick={logout}><i class="fas fa-sign-out-alt"></i></button></NavLink>
+            </div>
+            {/* {userData ? (
+                <>
+                <div className="nav-links">
+                <NavLink exact activeClassName="active" to="/" ><button className="nav-link"><i className="fas fa-home"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/games"><button className="nav-link"><i className="fas fa-gamepad"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/community"><button className="nav-link"><i className="fas fa-users"></i></button></NavLink>
+                <NavLink exact activeClassName="active" to="/profile"><button className="nav-link"><i className="fas fa-user"></i></button></NavLink>
+                <NavLink exact to="/"><button className="nav-link" onClick={logout}><i class="fas fa-sign-out-alt"></i></button></NavLink>
+                </div>
+                </>
+                ):(
+                <>
+                <div className="login">
+                    <form onSubmit={submit}>
+                        <input className="nav-input" type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+                        <input className="nav-input" type="password" id="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <input type="submit" value="Login" className="nav-login" />
+                    </form>
+                    <button className="forgot-password">Forgot your password ?</button>
+                </div>
+                </>)
+                } */}
+            
         </nav>
-        </withRouter>
-        
     );
-    
 }
- 
