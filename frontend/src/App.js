@@ -1,43 +1,39 @@
-import React, {useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
-import UserContext from './context/userContext';
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Profile from "./pages/profile/Profile";
+import Waiting from "./pages/waiting/Waiting";
+import UserListPage from "./pages/userlistpage/UserListPage";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
-import './App.css';
-
-import Home from './components/pages/home/Home';
-import Register from './components/pages/register/Register';
-import Navbar from './components/navbar/Navbar';
-
-
-
-export default function App() {
-
-  const [isLogIn, setisLogIn] = useState(false)
-
-  // useEffect(() => {
-  //   console.log("UseEFFECT MARCHE")
-  //   axios.get(process.env.REACT_APP_API_URL + "/home/logIn", { withCredentials: true })
-  //   .then((res) => {
-  //     localStorage.setItem("isLogin", res.data.logStatus);
-  //     setisLogIn("true")
-  //     console.log(res.data.logStatus)
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }, []);
+function App() {
+  const { user } = useContext(AuthContext);
+  console.log("user :", user)
 
   return (
-    <BrowserRouter>
-      <UserContext.Provider value={{ isLogIn, setisLogIn }}>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Register} />
-          <Route exact path="/Home" component={Home} />
-        </Switch>
-      </UserContext.Provider>
-    </BrowserRouter>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Login />}
+        </Route>
+        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/register">
+          {user ? <Redirect to="/" /> : <Login />}
+        </Route>
+        <Route path="/profile/:username">
+          <Profile />
+        </Route>
+        <Route exact path="/waitingforvalidation" component={Waiting} />
+        <Route exact path="/userlistpage" component={UserListPage} />
+      </Switch>
+    </Router>
   );
 }
 
+export default App;
