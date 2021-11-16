@@ -9,7 +9,7 @@ const authCtrl = {
             let newUserName = username.toLowerCase().replace(/ /g, '')
 
             const user_name = await Users.findOne({username: newUserName})
-            if(user_name) return res.status(400).json({msg: "This user name already exists."})
+            if(user_name) return res.status(400).json({msg: "This tag already exists."})
 
             const user_email = await Users.findOne({email})
             if(user_email) return res.status(400).json({msg: "This email already exists."})
@@ -52,7 +52,7 @@ const authCtrl = {
             const { email, password } = req.body
 
             const user = await Users.findOne({email})
-            .populate("followers following", "avatar username fullname followers following")
+            .populate("followers following", "avatar tag username followers following")
 
             if(!user) return res.status(400).json({msg: "This email does not exist."})
 

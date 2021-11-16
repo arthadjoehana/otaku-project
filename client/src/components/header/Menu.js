@@ -9,7 +9,7 @@ import NotifyModal from '../NotifyModal'
 const Menu = () => {
     const navLinks = [
         { label: 'Home', icon: 'home', path: '/'},
-        { label: 'Message', icon: 'near_me', path: '/message'},
+        { label: 'Message', icon: 'forum', path: '/message'},
         { label: 'Discover', icon: 'explore', path: '/discover'}
     ]
 
@@ -22,7 +22,7 @@ const Menu = () => {
     }
 
     return (
-        <div className="menu">
+        <div className="menu col-md-2">
             <ul className="navbar-nav flex-row">
                 {
                     navLinks.map((link, index) => (
@@ -40,7 +40,7 @@ const Menu = () => {
 
                         <span className="material-icons" 
                         style={{color: notify.data.length > 0 ? 'crimson' : ''}}>
-                            favorite
+                            notifications
                         </span>
 
                         <span className="notify_length">{notify.data.length}</span>

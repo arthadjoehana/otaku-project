@@ -1,13 +1,16 @@
 .comment_input{
+    background-color: white;
     display: flex;
     align-items: center;
 }
 .comment_input input{
+    padding: 10px;
     background: #f7f7f7;
     border: none;
     outline: none;
     flex: 1;
     overflow: auto;
+    border-radius: 5px;
 }
 .comment_input .postBtn{
     border: none;

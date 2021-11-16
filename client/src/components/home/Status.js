@@ -13,7 +13,7 @@ const Status = () => {
             
             <button className="statusBtn flex-fill"
             onClick={() => dispatch({ type: GLOBALTYPES.STATUS, payload: true })}>
-                What's on your mind ?
+                Start a post
             </button>
         </div>
     )

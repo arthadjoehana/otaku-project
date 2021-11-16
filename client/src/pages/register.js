@@ -39,7 +39,7 @@ const Register = () => {
                 <img src={LogoWhite} className="text-uppercase text-center mb-4" alt="" />
 
                 <div className="form-group">
-                    <label htmlFor="fullname">Full Name</label>
+                    <label htmlFor="fullname">Name</label>
                     <input type="text" className="form-control" id="fullname" name="fullname"
                     onChange={handleChangeInput} value={fullname}
                     style={{background: `${alert.fullname ? '#fd2d6a14' : ''}`}} />
@@ -50,9 +50,9 @@ const Register = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="username">User Name</label>
+                    <label htmlFor="username">Tag</label>
                     <input type="text" className="form-control" id="username" name="username"
-                    onChange={handleChangeInput} value={username.toLowerCase().replace(/ /g, '')}
+                    onChange={handleChangeInput} value={username}
                     style={{background: `${alert.username ? '#fd2d6a14' : ''}`}} />
                     
                     <small className="form-text text-danger">
@@ -111,7 +111,7 @@ const Register = () => {
                     </small>
                 </div>
 
-                <div className="row justify-content-between mx-0 mb-1">
+                {/* <div className="row justify-content-between mx-0 mb-1">
                     <label htmlFor="male">
                         Male: <input type="radio" id="male" name="gender"
                         value="male" defaultChecked onChange={handleChangeInput} />
@@ -126,7 +126,7 @@ const Register = () => {
                         Other: <input type="radio" id="other" name="gender"
                         value="other" onChange={handleChangeInput} />
                     </label>
-                </div>
+                </div> */}
                 
                 <button type="submit" className="btn btn-dark w-100">
                     Register
