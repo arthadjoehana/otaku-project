@@ -41,10 +41,10 @@ export const createPost = ({content, images, auth, socket}) => async (dispatch) 
         dispatch(createNotify({msg, auth, socket}))
 
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -60,10 +60,10 @@ export const getPosts = (token) => async (dispatch) => {
 
         dispatch({ type: POST_TYPES.LOADING_POST, payload: false })
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -89,10 +89,10 @@ export const updatePost = ({content, images, auth, status}) => async (dispatch) 
 
         dispatch({ type: GLOBALTYPES.ALERT, payload: {success: res.data.msg} })
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -118,10 +118,10 @@ export const likePost = ({post, auth, socket}) => async (dispatch) => {
         dispatch(createNotify({msg, auth, socket}))
 
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -144,10 +144,10 @@ export const unLikePost = ({post, auth, socket}) => async (dispatch) => {
         dispatch(removeNotify({msg, auth, socket}))
 
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -157,10 +157,10 @@ export const getPost = ({detailPost, id, auth}) => async (dispatch) => {
             const res = await getDataAPI(`post/${id}`, auth.token)
             dispatch({ type: POST_TYPES.GET_POST, payload: res.data.post })
         } catch (err) {
-            dispatch({
-                type: GLOBALTYPES.ALERT,
-                payload: {error: err.response.data.msg}
-            })
+            // dispatch({
+            //     type: GLOBALTYPES.ALERT,
+            //     payload: {error: err.response.data.msg}
+            // })
         }
     }
 }
@@ -181,10 +181,10 @@ export const deletePost = ({post, auth, socket}) => async (dispatch) => {
         dispatch(removeNotify({msg, auth, socket}))
         
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -195,10 +195,10 @@ export const savePost = ({post, auth}) => async (dispatch) => {
     try {
         await patchDataAPI(`savePost/${post._id}`, null, auth.token)
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }
 
@@ -209,9 +209,9 @@ export const unSavePost = ({post, auth}) => async (dispatch) => {
     try {
         await patchDataAPI(`unSavePost/${post._id}`, null, auth.token)
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
-        })
+        // dispatch({
+        //     type: GLOBALTYPES.ALERT,
+        //     payload: {error: err.response.data.msg}
+        // })
     }
 }

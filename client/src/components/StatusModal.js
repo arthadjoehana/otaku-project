@@ -26,7 +26,7 @@ const StatusModal = () => {
             if(!file) return err = "File does not exist."
 
             if(file.size > 1024 * 1024 * 10){
-                return err = "The image/video largest is 10mb."
+                return err = "The image/video max size is 10mb."
             }
 
             return newImages.push(file)
@@ -76,10 +76,10 @@ const StatusModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(images.length === 0)
-        return dispatch({ 
-            type: GLOBALTYPES.ALERT, payload: {error: "Please add your photo."}
-        })
+        // if(images.length === 0)
+        // return dispatch({ 
+        //     type: GLOBALTYPES.ALERT, payload: {error: "Please add your photo."}
+        // })
 
         if(status.onEdit){
             dispatch(updatePost({content, images, auth, status}))
