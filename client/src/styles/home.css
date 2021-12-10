@@ -33,6 +33,10 @@
     background: #ddd;
 }
 
+.status .statusBtn span {
+    margin-left: 10px;
+}
+
 /* ------------Posts ------ */
 .posts .card{
     box-shadow: 0 0 4px #ddd;

@@ -10,7 +10,7 @@ const LeftSideBar = () => {
     return (
         <div className="leftbar mt-3">
             <NavLink activeClassName="active" className="leftbar-link" to="">
-            <Avatar src={auth.user.avatar} size="medium-avatar" /> {auth.user.fullname}
+            <Avatar src={auth.user.avatar} size="medium-avatar" /> {auth.user.username}
             </NavLink>
             <NavLink activeClassName="active" className="leftbar-link" to="">
                 Store

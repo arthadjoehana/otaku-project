@@ -1,16 +1,16 @@
-const valid = ({fullname, username, email, password, cf_password}) => {
+const valid = ({username, tagname, email, password, cf_password}) => {
     const err = {}
 
-    if(!fullname) {
-        err.fullname = "Please add your username."
-    }else if(fullname.length > 25){
-        err.fullname = "Username is up to 25 characters long."
+    if(!username) {
+        err.username = "Please add your tagname."
+    }else if(username.length > 25){
+        err.username = "Tagname is up to 25 characters long."
     }
 
-    if(!username) {
-        err.username = "Please add your tag."
-    }else if(username.replace(/ /g, '').length > 25){
-        err.username = "Tag is up to 25 characters long."
+    if(!tagname) {
+        err.tagname = "Please add your tag."
+    }else if(tagname.replace(/ /g, '').length > 25){
+        err.tagname = "Tag is up to 25 characters long."
     }
 
     if(!email) {

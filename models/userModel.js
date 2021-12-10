@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 
 
 const userSchema = new mongoose.Schema({
-    fullname: {
+    username: {
         type: String,
         required: true,
         trim: true,
         maxlength: 25
     },
-    username: {
+    tagname: {
         type: String,
         required: true,
         trim: true,

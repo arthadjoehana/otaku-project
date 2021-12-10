@@ -108,11 +108,11 @@ export const likePost = ({post, auth, socket}) => async (dispatch) => {
         // Notify
         const msg = {
             id: auth.user._id,
-            text: 'like your post.',
+            text: 'likes your post.',
             recipients: [post.user._id],
             url: `/post/${post._id}`,
             content: post.content, 
-            image: post.images[0].url
+            // image: post.images[0].url
         }
 
         dispatch(createNotify({msg, auth, socket}))
@@ -137,7 +137,7 @@ export const unLikePost = ({post, auth, socket}) => async (dispatch) => {
         // Notify
         const msg = {
             id: auth.user._id,
-            text: 'like your post.',
+            text: 'likes your post.',
             recipients: [post.user._id],
             url: `/post/${post._id}`,
         }

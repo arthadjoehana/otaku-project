@@ -10,10 +10,10 @@ const Register = () => {
     const history = useHistory()
 
     const initialState = { 
-        fullname: '', username: '', email: '', password: '', cf_password: '', gender: 'male'
+        username: '', tagname: '', email: '', password: '', cf_password: '', gender: 'male'
     }
     const [userData, setUserData] = useState(initialState)
-    const { fullname, username, email, password, cf_password } = userData
+    const { username, tagname, email, password, cf_password } = userData
 
     const [typePass, setTypePass] = useState(false)
     const [typeCfPass, setTypeCfPass] = useState(false)
@@ -39,24 +39,24 @@ const Register = () => {
                 <img src={LogoWhite} className="text-uppercase text-center mb-4" alt="" />
 
                 <div className="form-group">
-                    <label htmlFor="fullname">Name</label>
-                    <input type="text" className="form-control" id="fullname" name="fullname"
-                    onChange={handleChangeInput} value={fullname}
-                    style={{background: `${alert.fullname ? '#fd2d6a14' : ''}`}} />
-                    
-                    <small className="form-text text-danger">
-                        {alert.fullname ? alert.fullname : ''}
-                    </small>
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="username">Tag</label>
+                    <label htmlFor="username">Name</label>
                     <input type="text" className="form-control" id="username" name="username"
                     onChange={handleChangeInput} value={username}
                     style={{background: `${alert.username ? '#fd2d6a14' : ''}`}} />
                     
                     <small className="form-text text-danger">
                         {alert.username ? alert.username : ''}
+                    </small>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="tagname">Tag</label>
+                    <input type="text" className="form-control" id="tagname" name="tagname"
+                    onChange={handleChangeInput} value={tagname}
+                    style={{background: `${alert.tagname ? '#fd2d6a14' : ''}`}} />
+                    
+                    <small className="form-text text-danger">
+                        {alert.tagname ? alert.tagname : ''}
                     </small>
                 </div>
 
